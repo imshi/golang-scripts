@@ -115,6 +115,56 @@ func switch0711() {
 	}
 	fmt.Printf("你的等级是：%s\n", grade)
 }
+
+// select随机选择case，都不为true执行default，没有default的话阻塞
+func select0713() {
+	var c1, c2, c3 chan int
+	var i1, i2 int
+	select {
+	case i1 = <-c1:
+		fmt.Printf("received ", i1, " from c1\n")
+	case c2 <- i2:
+		fmt.Printf("sent ", i2, " to c2\n")
+	case i3, ok := (<-c3):
+		if ok {
+			fmt.Printf("received ", i3, " from c3\n")
+		} else {
+			fmt.Printf("c3 is closed\n")
+		}
+	default:
+		fmt.Printf("no communication\n")
+
+	}
+}
+
+func goto0713() {
+	/* 定义局部变量 */
+	var a int = 10
+
+	/* 循环 */
+LOOP:
+	for a < 20 {
+		if a == 15 {
+			/* 跳过迭代，直接跳到指定行，这里等价与continue */
+			a = a + 1
+			// continue
+			goto LOOP
+		}
+		fmt.Printf("a的值为 : %d\n", a)
+		a++
+	}
+}
+
+// 打印9*9乘法表
+func nineWithNine() {
+	for i := 1; i < 10; i++ {
+		for j := 1; j <= i; j++ {
+			fmt.Printf("%d*%d=%d\t", j, i, i*j)
+		}
+		fmt.Println()
+	}
+}
+
 func main() {
 	// ppp("123abcdef")
 	// ccc("tom.li")
@@ -125,5 +175,8 @@ func main() {
 	// fmt.Println(Scale(pp, 5))
 	// stringIndex()
 	// const0711()
-	switch0711()
+	// switch0711()
+	// select0713()
+	// goto0713()
+	nineWithNine()
 }
