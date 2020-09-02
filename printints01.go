@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func comma(s string) string {
+func comma02(s string) string {
 	var buffer bytes.Buffer
 	// 分离正负号
 	if s[0] == '-' || s[0] == '+' {
@@ -36,6 +36,6 @@ func comma(s string) string {
 }
 
 func main() {
-	resoult := comma("+12164.515")
+	resoult := comma02("+12164.515")
 	fmt.Printf("The resoult is:%s", resoult)
 }
