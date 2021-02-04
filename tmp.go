@@ -436,7 +436,7 @@ func channelRange0821() {
 }
 
 func main() {
-	// ppp("123abcdef")
+	ppp("123abcdef")
 	// ccc("tom.li")
 	// sliceCopy()
 	// sliceCode()
@@ -458,5 +458,5 @@ func main() {
 	// interface0819_2()
 	// error0821()
 	// receiveMsg0821()
-	channelRange0821()
+	// channelRange0821()
 }
