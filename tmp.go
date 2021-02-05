@@ -15,7 +15,7 @@ import (
 func ppp(s string) {
 	s1 := s[0]
 	// %T类型输出
-	fmt.Printf("s1 type:%T\n", s1)
+	fmt.Printf("s1 type: %T\n", s1)
 	// 使用反射
 	fmt.Println("s1 type:", reflect.TypeOf(s1))
 }
@@ -125,12 +125,12 @@ func select0713() {
 	var i1, i2 int
 	select {
 	case i1 = <-c1:
-		fmt.Printf("received ", i1, " from c1\n")
+		fmt.Printf("received %d from c1\n", i1)
 	case c2 <- i2:
-		fmt.Printf("sent ", i2, " to c2\n")
+		fmt.Printf("sent %d to c2\n", i2)
 	case i3, ok := (<-c3):
 		if ok {
-			fmt.Printf("received ", i3, " from c3\n")
+			fmt.Printf("received %d from c3\n", i3)
 		} else {
 			fmt.Printf("c3 is closed\n")
 		}
