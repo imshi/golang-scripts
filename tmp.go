@@ -9,10 +9,11 @@ import (
 	"sync"
 	"time"
 	"unicode"
+	"unsafe"
 )
 
-// ppp 类型判断
-func ppp(s string) {
+// type_judge 类型判断
+func type_judge(s string) {
 	s1 := s[0]
 	// %T类型输出
 	fmt.Printf("s1 type: %T\n", s1)
@@ -20,8 +21,8 @@ func ppp(s string) {
 	fmt.Println("s1 type:", reflect.TypeOf(s1))
 }
 
-// ccc 字符串拆分
-func ccc(s string) {
+// string_split 字符串拆分
+func string_split(s string) {
 	arr := strings.Split(s, ".")
 	fmt.Printf("slice len :%d \n", len(s))
 	fmt.Printf("The first unit8 of slice is: %s \n", arr[0])
@@ -45,7 +46,7 @@ func sliceCode() {
 	fmt.Printf("rune等价于%T ; single的码点为：%v \n", single, single)
 	fmt.Println(unicode.IsNumber(single))
 
-	s := []byte("abc     a aaa     ccc  ddd d")
+	s := []byte("abc     a aaa     string_split  ddd d")
 	fmt.Printf("[] byte's len: %d\n", len(s))
 	// fmt.Printf()
 	tORf := unicode.IsSpace(rune(s[1])) //空格判断
@@ -74,7 +75,7 @@ func const0711() {
 	fmt.Println(&x)
 	x, y := 200, "abc"
 	fmt.Println(&x, x)
-	fmt.Print(y)
+	fmt.Println(y)
 	const (
 		a = iota
 		b
@@ -83,6 +84,8 @@ func const0711() {
 		e = iota
 	)
 	fmt.Println(a, b, c, d, e)
+	// 返回 c 在内存中的字节大小
+	fmt.Println(unsafe.Sizeof(c))
 	// 数字常量不会分配存储空间，无法寻址，故下一行的写法会报错
 	// fmt.Println(&e)
 }
@@ -436,8 +439,8 @@ func channelRange0821() {
 }
 
 func main() {
-	ppp("123abcdef")
-	// ccc("tom.li")
+	// type_judge("123abcdef")
+	// string_split("tom.li")
 	// sliceCopy()
 	// sliceCode()
 
@@ -445,7 +448,7 @@ func main() {
 	// fmt.Println(Scale(pp, 5))
 	// stringIndex()
 	// const0711()
-	// switch0711()
+	switch0711()
 	// select0713()
 	// goto0713()
 	// nineWithNine()
