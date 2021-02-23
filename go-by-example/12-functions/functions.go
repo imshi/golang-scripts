@@ -1,0 +1,14 @@
+package main
+
+import "fmt"
+
+// 两个int的形参，一个int的返回值
+func plus(a int, b int) int {
+	return a + b
+
+}
+
+func main() {
+	res := plus(1, 2)
+	fmt.Println("1+2 =", res)
+}
