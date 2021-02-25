@@ -1,3 +1,5 @@
+// Go 的结构体 是各个字段字段的类型的集合
+
 package main
 
 import "fmt"

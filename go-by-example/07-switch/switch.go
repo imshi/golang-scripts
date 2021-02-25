@@ -6,6 +6,8 @@ import (
 )
 
 func main() {
+
+	// session 1：根据变量值switch
 	i := 2
 	fmt.Print("write ", i, " as ")
 	switch i {
@@ -17,6 +19,7 @@ func main() {
 		fmt.Println("true")
 	}
 
+	// session 2：多条件switch
 	switch time.Now().Weekday() {
 	case time.Saturday, time.Sunday:
 		fmt.Println("It's the weekend")
@@ -24,6 +27,7 @@ func main() {
 		fmt.Println("It's a weekday")
 	}
 
+	// session 3：根据条件switch
 	t := time.Now()
 	switch {
 	case t.Hour() < 12:

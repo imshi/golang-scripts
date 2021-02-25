@@ -1,3 +1,4 @@
+// Go 内建多返回值 支持。例如用来同时返回一个函数的结果和错误信息
 package main
 
 import "fmt"

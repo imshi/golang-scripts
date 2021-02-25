@@ -1,8 +1,8 @@
+// 递归  - 调用自身
 package main
 
 import "fmt"
 
-// 递归
 func fact(n int) int {
 	// face 函数在到达face(0)前一直调用自身
 	if n == 1 {

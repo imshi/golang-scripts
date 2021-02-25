@@ -1,3 +1,5 @@
+// Go 语言使用一个独立的、明确的返回值来传递错误信息
+
 package main
 
 import (

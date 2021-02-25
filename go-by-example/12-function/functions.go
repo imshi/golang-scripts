@@ -9,6 +9,7 @@ func plus(a int, b int) int {
 }
 
 func main() {
+	// 通过 name(args) 来调用一个函数
 	res := plus(1, 2)
 	fmt.Println("1+2 =", res)
 }
