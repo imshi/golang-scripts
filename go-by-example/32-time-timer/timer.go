@@ -14,7 +14,8 @@ func main() {
 	// 告诉定时器需要等待2秒
 	timer1 := time.NewTimer(time.Second * 2)
 
-	// <-timer1.C 直到这个定时器的通道 C 明确的发送了定时器失效的值之前，将一直阻塞
+	// <-timer1.C：C为数据类型为Time的单向管道，只能读/发送，不能写/接收
+	// 该定时器的通道 C 阻塞2秒，执行Println操作
 	<-timer1.C
 	fmt.Println("Timer 1 expired")
 
