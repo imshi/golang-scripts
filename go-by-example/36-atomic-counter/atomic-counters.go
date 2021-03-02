@@ -1,6 +1,6 @@
 // Go 中最主要的状态管理方式是通过通道间沟通完成的
 // 除此之外，其他管理状态的方法还有：
-// 1、使用 sync/atomic包在多个 Go 协程中进行 原子计数（本节内容）
+// 1、使用 sync/atomic包在多个 Go 协程中进行 原子计数（本节内容）：sync/atomic包提供了底层的原子级内存操作，其执行过程不能被中断，这也就保证了同一时刻一个线程的执行不会被其他线程中断，也保证了多线程下数据操作的一致性
 // 2、互斥锁（下节内容）
 
 package main
@@ -33,5 +33,5 @@ func main() {
 
 	// 为了安全的使用该计数器（避免被其它 Go 协程更新），我们通过 LoadUint64 将当前值的拷贝提取到 opsFinal中（取值的内存地址 &ops）
 	opsFinal := atomic.LoadUint64(&ops)
-	fmt.Println("ops", opsFinal)
+	fmt.Println("ops:", opsFinal)
 }
