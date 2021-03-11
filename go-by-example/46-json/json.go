@@ -53,7 +53,7 @@ func main() {
 		Page:   2,
 		Fruits: []string{"apple", "peach", "pear"}}
 	res2B, _ := json.Marshal(res2D)
-	fmt.Println(string(res2B))
+	fmt.Println("重定义键名：", string(res2B))
 
 	// 以下为解码：将 JSON 数据转化为 Go 值（变量）
 	byt := []byte(`{"num":6.13, "strs":["a","b"]}`)
@@ -65,26 +65,28 @@ func main() {
 	if err := json.Unmarshal(byt, &dat); err != nil {
 		panic(err)
 	}
-	fmt.Println(dat)
+	fmt.Println("解码输出：", dat)
 
 	// 为了使用解码 map 中的值（声明时 value为空接口），我们需要将他们进行适当的类型转换。例如这里我们将 num 的值转换成 float64类型
 	num := dat["num"].(float64)
-	fmt.Println(num)
+	fmt.Println("解码后内容的使用：", num)
 
 	// 访问嵌套的值需要一系列的转化
 	strs := dat["strs"].([]interface{})
 	str1 := strs[0].(string)
-	fmt.Println(str1)
+	fmt.Println("解码后嵌套内容的使用：", str1)
 
 	// 解码 JSON 值到自定义类型：好处就是可以为我们的程序带来额外的类型安全加强，并且消除在访问数据时的类型断言
 	str := `{"page":1, "fruits": ["apple", "peach"]}`
 	res := &Response2{}
 	json.Unmarshal([]byte(str), &res)
-	fmt.Println(res)
-	fmt.Println(res.Fruits[0])
+	fmt.Println("解码json到自定义类型：", res)
+	fmt.Println("提取解析到自定义类型后的内容：", res.Fruits[0])
 
 	// 上面的例子中，我们经常使用 byte 和 string 作为使用标准输出时数据和 JSON 表示之间的中间值。我们也可以和os.Stdout 一样，直接将 JSON 编码直接输出至 os.Writer流中，或者作为 HTTP 响应体
+	// Encoder 主要负责将结构对象编码成 JSON 数据，我们可以调用 json.NewEncoder(io.Writer) 方法获得一个 Encoder 实例，再调用 Encode()方法将对象编码成JSON
 	enc := json.NewEncoder(os.Stdout)
 	d := map[string]int{"apple": 5, "lettuce": 7}
 	enc.Encode(d)
+	// Decoder 主要负责将 JSON 数据解析成结构对象，可以调用 json.NewDecoder(io.Reader) 方法获得一个 Decoder 实例，调用Decode()方法将 JOSN 内容解析为对象类型
 }
