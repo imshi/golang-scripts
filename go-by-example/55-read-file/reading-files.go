@@ -1,3 +1,6 @@
+// Go中内置 bufio、io包提供I/O操作支持（读写）
+// bufio 包实现了带缓冲的读取，能提升小读取操作的性能，并提供很多附加读取函数
+
 package main
 
 import (
@@ -8,9 +11,6 @@ import (
 	"os"
 	"path/filepath"
 )
-
-// Go中内置 bufio、io包提供I/O操作支持（读写）
-// bufio 包实现了带缓冲的读取，能提升小读取操作的性能，并提供很多附加读取函数
 
 // 抽离错误检查函数以便复用（读取文件需要经常进行错误检查）
 func check(e error) {
