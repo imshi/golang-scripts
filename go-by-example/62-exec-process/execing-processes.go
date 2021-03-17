@@ -1,4 +1,4 @@
-// 使用其他进程（也许是非go进程）完全替代当前的 Go 进程：os/exec包提供支持
+// 使用其他进程（也许是非go进程）完全替代当前的 Go 进程：syscall.Exec方法提供支持
 
 package main
 
