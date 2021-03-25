@@ -6,4 +6,5 @@
 
 ## Mind Maps
 > 个人总结脑图
+
 ![个人笔记](http://cdn.imwang.top/golang.svg)
