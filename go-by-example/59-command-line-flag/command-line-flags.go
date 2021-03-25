@@ -35,10 +35,11 @@ func main() {
 	// 所有的标志声明完成后，调用flag.Parse()来执行命令行解析
 	flag.Parse()
 
-	// 输出解析的选项以及后面的位置参数（需要使用类似 *wordPtr语法对指针进行解引用，从而获取选项的真实值）
+	// 输出解析的选项（需要使用类似 *wordPtr语法对指针进行解引用，从而获取选项的真实值）以及后面的位置参数
 	fmt.Println("word:", *wordPtr)
 	fmt.Println("numb:", *numbPtr)
 	fmt.Println("fork:", *boolPtr)
 	fmt.Println("svar:", svar)
+	// 位置参数（命令行中所有独立的单词，类似于shell中的 $1到$9）
 	fmt.Println("tail:", flag.Args())
 }
