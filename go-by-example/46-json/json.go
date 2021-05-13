@@ -1,4 +1,5 @@
 // encoding/json包：内置的 JSON 编解码支持，提供内置或者自定义类型与 JSON 数据之间的转化的功能
+// 编码：转化为json对象；解码：将json对象转化为内置或者自定义类型
 package main
 
 import (
