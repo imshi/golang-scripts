@@ -38,13 +38,16 @@ func main() {
 	// 写入字符串
 	n3, err := f.WriteString("writes\n")
 	fmt.Printf("normal string wrote %d bytes\n", n3)
+	check(err)
 
 	// 调用Sync来将缓冲区的信息写入磁盘
-	f.Sync()
+	err = f.Sync()
+	check(err)
 
 	// 使用bufio进行带缓冲区的写入
 	w := bufio.NewWriter(f)
 	n4, err := w.WriteString("buffered\n")
+	check(err)
 	fmt.Printf("bufio wrote %d bytes\n", n4)
 
 	// 使用Flush确保所有缓存写入底层写入器
