@@ -19,7 +19,15 @@ func main() {
 	var e int
 	fmt.Println(e)
 
-	// 支持短声明：只能在函数中使用，且不能
+	// 支持短声明：只能在函数体内使用，且不能用于已声明变量赋值
 	f := "short"
 	fmt.Println(f)
+
+	// 浮点型
+	var g float64 = 12.2
+	fmt.Println(g)
+
+	// 获取变量类型
+	h := 13.3
+	fmt.Printf("variable h's type: %T\n", h)
 }
