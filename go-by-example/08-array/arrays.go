@@ -1,9 +1,11 @@
+// 只能存储同一类型的数据且长度不可变；可以通过slice复制或者指针进行原地修改。
 package main
 
 import "fmt"
 
 func main() {
 
+	// 数组的长度不能改变，如果想拼接 2个数组，或是获取子数组，需要使用切片
 	// 数组没有显示初始化的话默认为零值
 	var a [5]int
 	fmt.Println("empty:", a)
@@ -16,6 +18,7 @@ func main() {
 	// 内置函数 len 返回数组的长度
 	fmt.Println("len: ", len(a))
 
+	// 声明时初始化
 	b := [5]int{1, 2, 3, 4, 5}
 	fmt.Println("declare:", b)
 

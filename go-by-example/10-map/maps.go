@@ -1,3 +1,4 @@
+// 无序的 key:value 对的集合，可通过 key 来快速检索数据；
 package main
 
 import "fmt"

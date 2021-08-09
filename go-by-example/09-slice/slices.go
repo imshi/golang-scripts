@@ -1,3 +1,6 @@
+// 切片是数组的抽象（数组长度不可变），可以看做长度可变的数组
+// 切片使用数组作为底层结构。切片包含三个组件：容量，长度和指向底层数组的指针，切片可以随时进行扩展
+// 声明切片时切片设置容量大小为可选配置，为切片预分配空间。在实际使用的过程中，如果容量不够，切片容量会自动扩展
 package main
 
 import "fmt"
@@ -22,27 +25,27 @@ func main() {
 	// `len` 返回 slice 的长度
 	fmt.Println("len:", len(s))
 
-	// 作为基本操作的补充，slice 支持比数组更多的操作。如内建的 `append`，它返回一个包含了一个者多个新值的 slice
+	// slice 支持比数组更多的操作，如内建的 `append`，用于切片追加或者合并
 	s = append(s, "d")
 	s = append(s, "e", "f")
 	fmt.Println("apd:", s)
 
-	// Slice 也可以被 `copy`
+	// Slice 也可以被复制（copy）
 	c := make([]string, len(s))
 	copy(c, s)
 	fmt.Println("cpy:", c)
 
-	// Slice 支持通过 `slice[low:high]` 语法进行切片
-	l := s[2:5]
-	fmt.Println("sl1:", l)
+	// 子切片（左包含）：[start, end)
+	l1 := s[2:5]
+	fmt.Println("sl1:", l1)
+	l2 := s[:5]
+	fmt.Println("sl2:", l2)
+	l3 := s[2:]
+	fmt.Println("sl3:", l3)
 
-	// 这个 slice 从 `s[0]` 到（不包含）`s[5]`。
-	l = s[:5]
-	fmt.Println("sl2:", l)
-
-	// 这个 slice 从（包含）`s[2]` 到 slice 的后一个值。
-	l = s[2:]
-	fmt.Println("sl3:", l)
+	// 切片合并，l2... 是切片解构的写法，将切片解构为 N 个独立的元素
+	combined := append(l1, l2...)
+	fmt.Println("combined:", combined)
 
 	// Slice 可以组成多维数据结构。内部的 slice 长度可以不同，这和多位数组不同。
 	twoD := make([][]int, 3)
