@@ -8,12 +8,12 @@ type rect struct {
 	width, heigth int
 }
 
-// 为指针类型接收器 rect定义 area 方法
+// 为指针类型接收器 rect定义 area 方法（计算长方形面积）
 func (r *rect) area() int {
 	return r.width * r.heigth
 }
 
-// 为值类型接收器 rect定义 perim 方法
+// 为值类型接收器 rect定义 perim 方法（计算长方形周长）
 func (r rect) perim() int {
 	return 2*r.width + 2*r.heigth
 }

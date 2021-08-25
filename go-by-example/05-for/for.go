@@ -1,4 +1,5 @@
 // for 是 Go 中唯一的循环结构
+// 可迭代array、slice、channel 或者 map 的元素；在数组和切片中它返回元素的索引和索引对应的值，在集合中返回 key-value 对的 key以及key对应元素的值拷贝；
 package main
 
 import (
