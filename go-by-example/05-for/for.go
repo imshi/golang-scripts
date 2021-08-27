@@ -25,10 +25,20 @@ func main() {
 		break
 	}
 
+	// 输出奇数 - continue跳出本轮循环
 	for n := 0; n <= 5; n++ {
 		if n%2 == 0 {
 			continue
 		}
 		fmt.Println(n)
+	}
+
+	// 使用 for range 遍历切片、字典等
+	m2 := map[string]string{
+		"Sample": "Male",
+		"Alice":  "Female",
+	}
+	for k, v := range m2 {
+		fmt.Println(k, v)
 	}
 }

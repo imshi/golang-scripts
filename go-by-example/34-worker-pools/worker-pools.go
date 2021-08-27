@@ -19,7 +19,7 @@ func worker(id int, jobs <-chan int, results chan<- int) {
 }
 
 func main() {
-	// 初始化channel
+	// 初始化带缓冲区的channel
 	jobs := make(chan int, 100)
 	results := make(chan int, 100)
 
