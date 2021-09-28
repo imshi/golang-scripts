@@ -20,4 +20,10 @@ func main() {
 
 	// 当上下文需要时，一个数可以被自动给定一个类型，比如变量赋值或者函数调用
 	fmt.Println(math.Sin(n))
+	const (
+		a = iota
+		b
+		c
+	)
+	fmt.Println(a, b, c)
 }
