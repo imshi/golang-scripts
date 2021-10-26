@@ -1,4 +1,4 @@
-// 协程：轻量级的线程
+// 协程：轻量级的线程，用于函数的并发运行
 // Go 语言提供了 sync 和 channel 两种方式支持协程(goroutine)的并发
 
 package main
