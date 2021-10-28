@@ -49,7 +49,7 @@ type Comment struct {
 }
 
 // init函数用于程序执行前初始化，会在程序运行时自动调用、且只会被调用一次
-// 初始化 mysql 客户端，基于 database/sql 连接，进行二次封装
+// 初始化 mysql 客户端，两种方法：1、 mysql.Open(string) 2、基于 database/sql 二次封装 + mysql.New(Config)
 func init() {
 
 	// 在输出日志中添加文件名和方法信息
@@ -65,7 +65,7 @@ func init() {
 
 	// 格式化MySQL连接字符串 - 用户表（users）
 	dns := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", username, password, host, port, dbname)
-	// 基于 database/sql 连接，进行二次封装
+	// 基于 database/sql 连接，进行二次封装：database/sql + mysql.New()
 	db, err := sql.Open("mysql", dns)
 	if err != nil {
 		panic(err)
