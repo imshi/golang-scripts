@@ -10,20 +10,20 @@ go 本身并没有良好的错误处理机制，err != nil 的处理方式有两
 package main
 
 import (
+	e "errors"
 	"fmt"
 
 	"github.com/pkg/errors"
 )
 
-/*
-func main() {
+func pkgError01() {
 	oldErr := e.New("这是底层error")
 
 	// 添加错误信息和堆栈信息，生成一个新的 error
 	wrappedErr := errors.Wrap(oldErr, "这是封装error")
 	// 输出错误信息
 	fmt.Printf("%v\n", wrappedErr)
-	fmt.Println("--------------------------------")
+	fmt.Println("------------pkgError01------------")
 
 	// 输出错误信息和详细堆栈信息
 	fmt.Printf("%+v\n", wrappedErr)
@@ -33,8 +33,8 @@ func main() {
 	err := errors.Cause(wrappedErr)
 	fmt.Println(err)
 }
-*/
-func pkgError() {
+
+func pkgError02() {
 	e := errors.New("make a error by errors.New")
 	e = errors.WithMessage(e, "add message001")
 	e = errors.WithMessage(e, "add message002")
@@ -42,10 +42,8 @@ func pkgError() {
 	fmt.Printf("%+v", e)
 }
 
-func test() {
-	pkgError()
-}
-
 func main() {
-	test()
+	pkgError01()
+	fmt.Println("------------pkgError02------------")
+	pkgError02()
 }
