@@ -10,6 +10,8 @@ import (
 
 var db = make(map[string]string)
 
+// var db = map[string]string{"foo": "bar"}
+
 func setupRouter() *gin.Engine {
 	// 【可选】关掉控制台颜色：将日志输出到文件时如果不关闭颜色会有\033[31m这种的控制台颜色转义输出；
 	// gin.DisableConsoleColor()
@@ -35,6 +37,7 @@ func setupRouter() *gin.Engine {
 		}
 	})
 
+	//  r.Group()：分组路由，提供api的分组管理功能
 	// 使用 gin.BasicAuth()中间件进行 Group 认证
 	/*
 		等效方式一:
@@ -59,7 +62,7 @@ func setupRouter() *gin.Engine {
 		  	-H 'content-type: application/json' \
 		  	-d '{"value":"bar"}'
 	*/
-	// 注册路由和处理函数（）
+	// 在路由分组中注册路由，并实现其处理函数，.(string)为类型断言，将 c.MustGet(key) 转换为string类型
 	authorized.POST("admin", func(c *gin.Context) {
 		user := c.MustGet(gin.AuthUserKey).(string)
 
