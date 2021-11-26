@@ -1,5 +1,6 @@
+// 使用 os.Open() 打开文件，并返回文件对象供读写使用；任务结束后要关闭文件：建议这个操作在 Open操作后立即使用 defer 来完成
 // Go中内置 bufio、io包提供I/O操作支持（读写）
-// bufio 包实现了带缓冲的读取，能提升小读取操作的性能，并提供很多附加读取函数
+// bufio 包实现了带缓冲的读取，能提升小读取操作的性能，并提供很多附加读取函数（推荐使用）
 
 package main
 
@@ -40,13 +41,17 @@ func main() {
 	sep := string(filepath.Separator)
 	fmt.Println("当前系统目录分隔符为：", sep)
 
+	fmt.Println("=== 使用ioutil一次性读取：")
 	dat, err := ioutil.ReadFile("dat")
 	check(err)
 	fmt.Print(string(dat))
 
+	fmt.Println("=== 使用 io 进行按字节读取：")
 	// 使用 os.Open打开一个文件获取一个 os.File 实例对象
 	f, err := os.Open("dat")
 	check(err)
+	// 任务结束后要关闭文件：建议这个操作在 Open操作后立即使用 defer 来完成。
+	defer f.Close()
 
 	// 从文件开始位置读取一些字节。这里最多读取 5 个字节
 	b1 := make([]byte, 5)
@@ -54,6 +59,7 @@ func main() {
 	check(err)
 	fmt.Printf("%d bytes:%s \n", n1, string(b1))
 
+	fmt.Println("=== 指定位置读取：")
 	// 也可以 Seek 到一个文件中已知的位置并从这个位置开始进行读取
 	o2, err := f.Seek(6, 0)
 	check(err)
@@ -75,11 +81,26 @@ func main() {
 	check(err)
 
 	// bufio bufio 包实现了带缓冲的读取，这不仅对有很多小的读取操作的能提升性能，也提供了很多附加的读取函数
+	fmt.Println("=== 使用 bufio 实现带缓冲的读取：")
 	r4 := bufio.NewReader(f)
-	b4, err := r4.Peek(5)
+	// 推荐使用 ReadString 或 ReadBytes 方法进行按行读取，会持续读取直到遇到指定的分隔符，并返回一个字符串、一个字节切片；
+	b4, err := r4.ReadString('\n')
 	check(err)
-	fmt.Printf("5 bytes: %s\n", string(b4))
+	fmt.Printf("The First Line: %s\n", string(b4))
+
+	fmt.Println("=== 推荐的按行读取整个文件的方法：")
+	file, err := os.Open("dat")
+	check(err)
+	defer file.Close()
+	r5 := bufio.NewReader(file)
+	for {
+		b5, err := r5.ReadBytes('\n')
+		if err == io.EOF {
+			break
+		}
+		fmt.Printf("%s", string(b5))
+	}
 
 	// 任务结束后要关闭这个文件（通常这个操作应该在 Open操作后立即使用 defer 来完成）
-	f.Close()
+	// f.Close()
 }
