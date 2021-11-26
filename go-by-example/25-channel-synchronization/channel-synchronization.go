@@ -20,9 +20,9 @@ func worker(done chan bool) {
 func main() {
 	done := make(chan bool, 1)
 
-	// 运行一个worker Go协程,并且给予用于通知的通道
+	// 运行一个子协程,并且给予传入用于通知的通道
 	go worker(done)
 
-	// 程序将在接收到woeker发出通知前一直阻塞,如果去掉下面这行,程序甚至将在worker还没运行就结束了
+	// 程序将在接收到 woeker 发出通知前一直阻塞，如果去掉下面这行，程序（主协程）甚至将在子协程 worker 还没运行就结束了
 	<-done
 }
