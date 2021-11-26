@@ -7,6 +7,8 @@ package main
 import (
 	"fmt"
 	"time"
+
+	"github.com/spf13/cast"
 )
 
 var ch002 = make(chan string, 10)
@@ -18,6 +20,7 @@ func download(url string) {
 }
 
 func main() {
+	fmt.Println("=== Sample 001 ===")
 	// 定义一个string类型、大小为 10 的缓冲通道
 	messages := make(chan string, 10)
 
@@ -29,9 +32,12 @@ func main() {
 	// 从通道中接收消息
 	msg := <-messages
 	fmt.Println(msg)
+
+	fmt.Println("=== Sample 002 ===")
 	// 使用 channel 信道，在协程之间传递数据，确保同步交换数据，保证数据安全  - 示例 1
 	for i := 0; i < 3; i++ {
-		go download("a.com/" + string(i+'0'))
+		// go download("a.com/" + string(i+'0'))
+		go download("a.com/" + cast.ToString(i+0))
 	}
 
 	for i := 0; i < 3; i++ {
@@ -40,6 +46,7 @@ func main() {
 	}
 	fmt.Println("Done!")
 
+	fmt.Println("=== Sample 003 ===")
 	// 使用 channel 信道，在协程之间传递数据，确保同步交换数据，保证数据安全  - 示例 2
 	ch := make(chan int) //构建一个通道
 

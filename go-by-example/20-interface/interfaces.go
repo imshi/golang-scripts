@@ -41,7 +41,7 @@ func (c circle) perim() float64 {
 	return 2 * math.Pi * c.radius
 }
 
-// 如果一个变量的是接口类型，那么我们可以调用其方法；定义 messure 函数调用接口方法
+// 如果一个变量是接口类型，那么我们可以调用其方法；定义 messure 函数调用接口方法
 func measure(g geometry) {
 	fmt.Println("interface value:", g)
 	fmt.Println(g.area())
@@ -54,7 +54,7 @@ func main() {
 	r := rect{width: 3, heigth: 4}
 	c := circle{radius: 5}
 
-	//
+	// 多态
 	measure(r)
 	fmt.Print("=========\n")
 	measure(c)
