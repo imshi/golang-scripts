@@ -23,15 +23,18 @@ func main() {
 	jobs := make(chan int, 100)
 	results := make(chan int, 100)
 
+	// 设置并发数为 3
 	for w := 1; w <= 3; w++ {
 		go worker(w, jobs, results)
 	}
 
+	// 生成 9 个任务
 	for j := 1; j <= 9; j++ {
 		jobs <- j
 	}
-
 	close(jobs)
+
+	// 接收结果，确保所有的worker都已经完成
 	for a := 1; a <= 9; a++ {
 		<-results
 	}

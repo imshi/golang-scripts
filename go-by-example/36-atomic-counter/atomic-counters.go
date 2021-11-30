@@ -8,19 +8,25 @@ package main
 import (
 	"fmt"
 	"runtime"
+	"sync"
 	"sync/atomic"
-	"time"
 )
 
 func main() {
 	// 使用一个无符号整型数（永远是正整数）来表示这个计数器
 	var ops uint64 = 0
 
-	// 启动 50 个 Go 协程模拟并发更新，对计数器每隔 1ms 进行一次加一操作
+	// 使用 WaitGroup 确认所有协程均执行完毕
+	var wg sync.WaitGroup
+	// 启动 50 个协程，每个协程会将计数器递增 1000 次，最终 ops 的值为 50000
 	for i := 0; i < 50; i++ {
+		// wg 计数器加 1
+		wg.Add(1)
 		go func() {
-			for {
-				// 使用 AddUint64 来让计数器自动增加，使用& 语法来给出 ops 的内存地址
+			// 当前协程执行完毕后，从 wg 中减去 1 个计数器
+			defer wg.Done()
+			for c := 0; c < 1000; c++ {
+				// 使用 AddUint64 来让计数器自动增加，使用 & 语法来给出 ops 的内存地址
 				atomic.AddUint64(&ops, 1)
 				// 允许其它 Go 协程的执行
 				runtime.Gosched()
@@ -28,10 +34,10 @@ func main() {
 		}()
 	}
 
-	// 等待一秒(让 ops 的自加操作完成)
-	time.Sleep(time.Second)
+	// 等待所有 Go 协程执行完毕
+	wg.Wait()
 
-	// 为了安全的使用该计数器（避免被其它 Go 协程更新），我们通过 LoadUint64 将当前值的拷贝提取到 opsFinal中（取值的内存地址 &ops）
+	// atomic.LoadUint64 函数允许在原子更新的同时安全地读取，即：读取 ops 的值的同时，当前计算机中的任何CPU都不会进行其它的针对此值的读或写操作
 	opsFinal := atomic.LoadUint64(&ops)
 	fmt.Println("ops:", opsFinal)
 }

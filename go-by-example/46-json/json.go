@@ -1,5 +1,6 @@
 // encoding/json包：内置的 JSON 编解码支持，提供内置或者自定义类型与 JSON 数据之间的转化的功能
 // 编码：转化为json对象；解码：将json对象转化为内置或者自定义类型
+// 推荐直接使用三方包：jsoniter- 性能更高，且完全兼容原生json包；
 package main
 
 import (
