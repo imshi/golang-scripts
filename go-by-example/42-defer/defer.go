@@ -47,6 +47,8 @@ func main() {
 	fmt.Println(get(5))
 	fmt.Println("finished")
 
+	fmt.Println("--------------------------")
+
 	// 创建一个文件并写入，在程序运行结束之前关闭文件
 	f := createFile("defer.txt")
 	defer closeFile(f)
