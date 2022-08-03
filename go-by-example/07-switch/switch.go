@@ -1,3 +1,9 @@
+/*
+select 和 switch 均用于分支操作，区别在于 switch 可以用于各种类型，select 只能应用于IO操作/channel的发送或者接收；
+没有 default 的 select 会阻塞，没有可运行的 case 将会阻塞（死锁）；而 switch 的 default语句可以省略，如果没有匹配的case就退出啥也不干并退出switch。
+select 可以有多个分支都满足条件（会随机的选取一个执行），如果没有匹配则会阻塞（可以通过default 子句的 select 来实现非阻塞 的发送、接收）；
+switch 分支是顺序执行的，从上至下逐一测试，直到匹配成功为止，匹配项后面无需加break，自动跳出，使用fallthrough可以强制继续执行。
+*/
 package main
 
 import (

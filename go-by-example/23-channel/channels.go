@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/cast"
 )
 
-var ch002 = make(chan string, 10)
+var ch002 = make(chan string, 10) // 定义一个string类型、大小为 10 的缓冲通道
 
 func download(url string) {
 	fmt.Println("start to download", url)

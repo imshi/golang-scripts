@@ -11,7 +11,7 @@ func main() {
 	fmt.Println(a)
 
 	// 可以申明一次性声明多个变量
-	var b, c int = 1, 2
+	var b, c uint = 1, 123
 	fmt.Println(b, c)
 
 	// 支持自动推断变量类型

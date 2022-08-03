@@ -31,7 +31,7 @@ func main() {
 	items := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
 	for _, item := range items {
-		// 开启协程前，向 channel 发送一个消息，若缓冲区满，则阻塞
+		// 开启协程前，向 channel 发送一个空消息占位，再通过缓冲区的数量3限制并发为3，超过 1+3 则阻塞
 		ch <- struct{}{}
 		// 递增 WaitGroup 的计数器
 		wg.Add(1)

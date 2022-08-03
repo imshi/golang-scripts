@@ -8,6 +8,7 @@ func main() {
 	jobs := make(chan int, 5)
 	done := make(chan bool)
 
+	// 通过goroutine实现并发执行
 	go func() {
 		for {
 			// more 用来判定接收完成与否，如果 jobs 已经关闭了、并且通道中所有的值都已经接收完毕，那么 more 的值将是 false

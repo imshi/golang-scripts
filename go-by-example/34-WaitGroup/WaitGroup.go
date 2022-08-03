@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// 协程并发执行的函数，WaitGroup必须通过指针传递给函数
+// 协程并发执行的函数：在主函数中声明的WaitGroup，必须通过指针传递给函数；也可以将该函数集成到主函数中，各有利弊。
 func worker(id int, wg *sync.WaitGroup) {
 	// 通知主线程，协程执行完毕
 	defer wg.Done()
@@ -31,3 +31,25 @@ func main() {
 	// 等待所有协程执行完毕
 	wg.Wait()
 }
+
+/*
+// 写法2：将协程函数直接定义在主函数中，避免第一种写法中的指针传参
+func main() {
+	var wg sync.WaitGroup
+	// 启动5个协程
+	worker := func(id int) {
+		// 通知主线程，协程执行完毕
+		defer wg.Done()
+		fmt.Printf("Worker %d starting\n", id)
+		// 睡眠一秒，用以模拟任务耗时
+		time.Sleep(time.Second)
+		fmt.Printf("Worker %d done\n", id)
+	}
+
+	for i := 1; i <= 5; i++ {
+		wg.Add(1)
+		go worker(i)
+	}
+	wg.Wait()
+}
+*/
