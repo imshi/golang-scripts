@@ -8,6 +8,6 @@
 
 ## Mind Maps
 
-> 个人总结脑图
+> 学习总结脑图
 
 ![个人笔记](http://cdn.imwang.top/article/golang.svg)

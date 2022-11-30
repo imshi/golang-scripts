@@ -8,8 +8,8 @@ import (
 	"os"
 )
 
-// g该程序调试要么先使用 go build编译一个可执行二进制文件，执行文件 + 参数运行
-// 要么在vscode里的调试文件launch.json中添加args模块传参，program 设置为 ${file} 表示运行调试当前文件并传入命令行参数；
+// 该程序调试要么先使用 go build编译一个可执行二进制文件，执行文件 + 参数运行
+// 要么在vscode里的调试文件launch.json中添加args模块传参，program 设置为 ${file} 表示运行调试当前文件并传入命令行参数，然后以调试模式运行查看效果；
 func main() {
 	argsWithProg := os.Args
 	argsWithoutProg := os.Args[1:]

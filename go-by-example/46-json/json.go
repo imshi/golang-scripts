@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"github.com/tidwall/gjson"
 )
 
 // 自定义类型的编码和解码
@@ -57,8 +59,11 @@ func main() {
 	res2B, _ := json.Marshal(res2D)
 	fmt.Println("重定义键名：", string(res2B))
 
-	// 以下为解码：将 JSON 数据转化为 Go 值（变量）
+	// 以下为解码：将 JSON 数据转化为 Go 值（变量），建议直接使用第三方包：tidwall/gjson
 	byt := []byte(`{"num":6.13, "strs":["a","b"]}`)
+	gjson_byt := `{"name":{"first":"Janet","last":"Prichard"},"age":47}`
+	value := gjson.Get(gjson_byt, "name.first")
+	fmt.Println("使用gjson解析json示例：", value.String())
 
 	// 提供一个存储解码数据的变量
 	var dat map[string]interface{}

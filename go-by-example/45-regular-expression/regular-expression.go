@@ -20,7 +20,7 @@ func main() {
 	// 匹配测试，，返回布尔值
 	fmt.Println(r.MatchString("peach"))
 
-	// 查找字符串，匹配到返回匹配的内容，为匹配到返回空值
+	// 查找字符串，匹配到返回匹配的内容，未匹配到返回空值
 	fmt.Println(r.FindString("peach punch"))
 
 	// 查找第一次匹配的字符串，返回匹配内容开始和结束位置索引

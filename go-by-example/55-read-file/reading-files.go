@@ -26,9 +26,8 @@ func main() {
 	// Go 不是解释型语言，它的路径不是 .go 文件的路径，而是编译出来的可执行文件的路径
 	// 方式一
 	abspath, err := filepath.Abs(".")
-	if err != nil {
-		panic(err)
-	}
+	check(err)
+
 	fmt.Println("当前工程目录绝对路径：", abspath)
 	absbase := filepath.Base(abspath)
 	fmt.Println("当前目录路径Base文件夹：", absbase)
