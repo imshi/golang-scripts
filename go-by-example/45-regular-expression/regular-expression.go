@@ -1,4 +1,4 @@
-//  regexp包：内置正则表达式功能
+//  regexp 包：内置正则表达式功能
 
 package main
 
@@ -41,10 +41,10 @@ func main() {
 	// 提供一个正整数来限制匹配次数
 	fmt.Println(r.FindAllString("peach punch pinch", 2))
 
-	// MatchString 的等价用法： []byte参数 + 不带 String 的函数
+	// MatchString 的等价用法： []byte 参数 + 不带 String 的函数
 	fmt.Println(r.Match([]byte("peach")))
 
-	// MustCompile： Compile 的变体，Compile 返回两个值，不能用于常量，
+	// MustCompile：Compile 的变体，Compile 返回两个值，不能用于常量，
 	r = regexp.MustCompile("p([a-z]+)ch")
 	fmt.Println("MustCompile:", r)
 

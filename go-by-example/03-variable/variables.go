@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"reflect"
+	"strconv"
 )
 
 func main() {
@@ -34,21 +35,31 @@ func main() {
 	h := 13.3
 	fmt.Printf("variable h's type: %T\n", h)
 
-	// Go使用UTF8编码，一个英文字符占 1 byte；一个中文字符占3 byte
+	// Go 使用 UTF8 编码，一个英文字符占 1 byte；一个中文字符占 3 byte
 	str2 := "go语言"
 
-	// 字符串是以 byte 数组形式保存的，类型是 uint8，占1个 byte；
+	// 字符串是以 byte 数组形式保存的，类型是 uint8，占 1 个 byte；
 	fmt.Println(reflect.TypeOf(str2[2]).Kind()) // uint8
-	fmt.Println("len(str2)：", len(str2))        // len(str2)：8
+	fmt.Println("len(str2):", len(str2))        // len(str2)：8
 
 	// 如果字符串中包括中文并且要进行截取处理，正确的处理方式是将 string 转为 rune 数组
 	runeArr := []rune(str2)
 
-	// []rune 类型中使用int32表示每个字符，可以正确的处理中文
+	// []rune 类型中使用 int32 表示每个字符，可以正确的处理中文
 	fmt.Println(reflect.TypeOf(runeArr[2]).Kind()) //int32
 
 	// 打印时需要用 string 进行类型转换，否则打印的是编码值
 	fmt.Println(runeArr[2], string(runeArr[2])) //35821 语
 	fmt.Println("len(runeArr): ", len(runeArr)) // len(runeArr): 4
+
+	// 简单类型转换
+	var i = 5.0
+	fmt.Printf("简单类型转换前：%T \n", i)
+	int_i := int(i)
+	fmt.Println("简单类型转换后：", reflect.TypeOf(int_i))
+
+	// 字符串与其他简单数据类型（布尔、数值）之间的类型转换，使用 strconv 包
+	string_i := strconv.Itoa(int_i)
+	fmt.Printf("整型转换为字符串型：%T\n", string_i)
 
 }

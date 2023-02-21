@@ -24,7 +24,7 @@ func main() {
 
 	// `len` 返回 slice 的长度
 	fmt.Println("len:", len(s))
-	fmt.Println("all-001:", s[:]) // s[:]完全等价于s[0:len(s)]，0和len(s)作为默认值传入
+	fmt.Println("all-001:", s[:]) // s[:] 完全等价于 s[0:len(s)]，0 和 len(s) 作为默认值传入
 	// slice 支持比数组更多的操作，如内建的 `append`，用于切片追加或者合并
 	s = append(s, "d")
 	s = append(s, "e", "f")

@@ -1,0 +1,10 @@
+textRules:
+    "go语言": 0
+# rules:
+#     # 拼写检查为实验功能
+#     # 0 - off, 1 - err, 2 - warning
+#     spellcheck: 0
+# spellcheck:
+#   # Correct Words (Case insensitive) for by Spellcheck
+#   words:
+#     - GitHub
