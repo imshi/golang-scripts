@@ -5,7 +5,7 @@ package main
 
 import "fmt"
 
-// 两个int的形参，一个int的返回值
+// 两个 int 的形参，一个 int 的返回值
 func plus(a int, b int) int {
 	return a + b
 

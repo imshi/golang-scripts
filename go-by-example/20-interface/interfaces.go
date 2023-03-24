@@ -1,7 +1,7 @@
 // 接口是一系列方法的集合，只要类型实现了接口中的所有方法，就被称为就实现了该接口
 // 接口不能被实例化，一个类型可以实现多个接口
 // 实例可以强制类型转换为接口，接口也可以强制类型转换为实例
-// 空接口：没有任何方法的接口，空接口可以表示任意类型
+// 空接口：interface{}，没有任何方法的接口，可以表示任意类型，Go 1.18 开始支持泛型，并提供了一个和空接口 interface{} 等价的新关键词 any
 
 package main
 
@@ -49,6 +49,16 @@ func measure(g geometry) {
 
 }
 
+// 使用断言判断传入的参数是不是 int 类型，形参为空接口
+func printInt(val interface{}) {
+	v, ok := val.(int)
+	if !ok {
+		fmt.Println("val is not an int")
+		return
+	}
+	fmt.Println(v)
+}
+
 func main() {
 	// 结构体实例
 	r := rect{width: 3, heigth: 4}
@@ -58,4 +68,9 @@ func main() {
 	measure(r)
 	fmt.Print("=========\n")
 	measure(c)
+
+	// 类型断言，判断 i 是不是整型
+	var i interface{} = 100
+	// var i any = 100
+	printInt(i)
 }

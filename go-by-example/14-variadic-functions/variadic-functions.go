@@ -22,7 +22,7 @@ func main() {
 	sum(1, 2)
 	sum(1, 2, 3)
 
-	// 若 slice 已经有了多个值，想把它作为变参使用，传参时写法为： func(slice...)
+	// 若 slice 已经有了多个值，想把它作为变参使用，传参时写法为：func(slice...)
 	nums_slice := []int{1, 2, 3, 4}
 	sum(nums_slice...)
 }

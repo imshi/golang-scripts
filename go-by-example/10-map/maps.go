@@ -1,5 +1,5 @@
 // 无序的 key:value 对的集合，可通过 key 来快速检索数据；
-// map里所有键的数据类型必须是相同的，所有值的数据类型也必须相同，但键和值的数据类型可以不相同
+// map 里所有键的数据类型必须是相同的，所有值的数据类型也必须相同，但键和值的数据类型可以不相同
 package main
 
 import "fmt"
@@ -27,7 +27,7 @@ func main() {
 	_, prs := m["k2"]
 	fmt.Println("prs:", prs)
 
-	// 同时声明和初始化一个map
+	// 同时声明和初始化一个 map
 	n := map[string]int{"foo": 1, "bar": 2}
 	// 注意输出格式：map[k:v k:v]
 	fmt.Println("map n: ", n)

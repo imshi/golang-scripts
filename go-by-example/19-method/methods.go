@@ -1,5 +1,5 @@
-// 方法，主要结合结构体使用，用来模拟其它面相对象语言（如Python）中的 class 类
-// 本质是函数：即作用在某种数据类型上的函数，多定义在struct上；与函数定义的区别是：多了一个接收者（在func关键字和方法名之间）
+// 方法，主要结合结构体使用，用来模拟其它面相对象语言（如 Python）中的 class 类
+// 本质是函数：即作用在某种数据类型上的函数，多定义在 struct 上；与函数定义的区别是：多了一个接收者（在 func 关键字和方法名之间）
 
 package main
 
@@ -9,12 +9,12 @@ type rect struct {
 	width, heigth int
 }
 
-// 为指针类型接收器 rect定义 area 方法（计算长方形面积）
+// 为指针类型接收器 rect 定义 area 方法（计算长方形面积）
 func (r *rect) area() int {
 	return r.width * r.heigth
 }
 
-// 为值类型接收器 rect定义 perim 方法（计算长方形周长）
+// 为值类型接收器 rect 定义 perim 方法（计算长方形周长）
 func (r rect) perim() int {
 	return 2*r.width + 2*r.heigth
 }

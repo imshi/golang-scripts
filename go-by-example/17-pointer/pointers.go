@@ -15,7 +15,7 @@ func zeroptr(iptr *int) {
 	*iptr = 0
 }
 
-// zeroval不能改变 i 的值，但是zeroptr 可以，因为它有这个变量的内存地址的引用
+// zeroval 不能改变 i 的值，但是 zeroptr 可以，因为它有这个变量的内存地址的引用
 func main() {
 
 	str := "Golang"

@@ -1,6 +1,6 @@
 // encoding/json包：内置的 JSON 编解码支持，提供内置或者自定义类型与 JSON 数据之间的转化的功能
-// 编码：转化为json对象；解码：将json对象转化为内置或者自定义类型
-// 推荐直接使用三方包：jsoniter- 性能更高，且完全兼容原生json包；
+// 编码：转化为 json 对象；解码：将 json 对象转化为内置或者自定义类型
+// 推荐直接使用三方包：jsoniter- 性能更高，且完全兼容原生 json 包；
 package main
 
 import (
@@ -24,7 +24,7 @@ type Response2 struct {
 
 func main() {
 
-	// 基本数据类型到JSON字符串的编码
+	// 基本数据类型到 JSON 字符串的编码
 	bolB, _ := json.Marshal(true)
 	fmt.Println("内置布尔类型编码：", string(bolB))
 
@@ -43,14 +43,14 @@ func main() {
 
 	mapD := map[string]int{"apple": 5, "lettuce": 7}
 	mapB, _ := json.Marshal(mapD)
-	fmt.Println("内置map类型编码：", string(mapB))
+	fmt.Println("内置 map 类型编码：", string(mapB))
 
 	// JSON 包可以自动编码你的自定义类型，仅输出可导出的字段，并且默认使用他们的名字作为 JSON 数据的键
 	res1D := &Response1{
 		Page:   1,
 		Fruits: []string{"apple", "peach", "pear"}}
 	res1B, _ := json.Marshal(res1D)
-	fmt.Println("自定义struct类型编码：", string(res1B))
+	fmt.Println("自定义 struct 类型编码：", string(res1B))
 
 	// 通过在结构字段声明标签来自定义编码的 JSON 数据键名称
 	res2D := Response2{
@@ -63,7 +63,7 @@ func main() {
 	byt := []byte(`{"num":6.13, "strs":["a","b"]}`)
 	gjson_byt := `{"name":{"first":"Janet","last":"Prichard"},"age":47}`
 	value := gjson.Get(gjson_byt, "name.first")
-	fmt.Println("使用gjson解析json示例：", value.String())
+	fmt.Println("使用 gjson 解析 json 示例：", value.String())
 
 	// 提供一个存储解码数据的变量
 	var dat map[string]interface{}
@@ -74,7 +74,7 @@ func main() {
 	}
 	fmt.Println("解码输出：", dat)
 
-	// 为了使用解码 map 中的值（声明时 value为空接口），我们需要将他们进行适当的类型转换。例如这里我们将 num 的值转换成 float64类型
+	// 为了使用解码 map 中的值（声明时 value 为空接口），我们需要将他们进行适当的类型转换。例如这里我们将 num 的值转换成 float64 类型
 	num := dat["num"].(float64)
 	fmt.Println("解码后内容的使用：", num)
 
@@ -87,13 +87,13 @@ func main() {
 	str := `{"page":1, "fruits": ["apple", "peach"]}`
 	res := &Response2{}
 	json.Unmarshal([]byte(str), &res)
-	fmt.Println("解码json到自定义类型：", res)
+	fmt.Println("解码 json 到自定义类型：", res)
 	fmt.Println("提取解析到自定义类型后的内容：", res.Fruits[0])
 
-	// 上面的例子中，我们经常使用 byte 和 string 作为使用标准输出时数据和 JSON 表示之间的中间值。我们也可以和os.Stdout 一样，直接将 JSON 编码直接输出至 os.Writer流中，或者作为 HTTP 响应体
-	// Encoder 主要负责将结构对象编码成 JSON 数据，我们可以调用 json.NewEncoder(io.Writer) 方法获得一个 Encoder 实例，再调用 Encode()方法将对象编码成JSON
+	// 上面的例子中，我们经常使用 byte 和 string 作为使用标准输出时数据和 JSON 表示之间的中间值。我们也可以和 os.Stdout 一样，直接将 JSON 编码直接输出至 os.Writer 流中，或者作为 HTTP 响应体
+	// Encoder 主要负责将结构对象编码成 JSON 数据，我们可以调用 json.NewEncoder(io.Writer) 方法获得一个 Encoder 实例，再调用 Encode() 方法将对象编码成 JSON
 	enc := json.NewEncoder(os.Stdout)
 	d := map[string]int{"apple": 5, "lettuce": 7}
 	enc.Encode(d)
-	// Decoder 主要负责将 JSON 数据解析成结构对象，可以调用 json.NewDecoder(io.Reader) 方法获得一个 Decoder 实例，调用Decode()方法将 JOSN 内容解析为对象类型
+	// Decoder 主要负责将 JSON 数据解析成结构对象，可以调用 json.NewDecoder(io.Reader) 方法获得一个 Decoder 实例，调用 Decode() 方法将 JOSN 内容解析为对象类型
 }

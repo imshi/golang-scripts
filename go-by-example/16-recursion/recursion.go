@@ -4,7 +4,7 @@ package main
 import "fmt"
 
 func fact(n int) int {
-	// face 函数在到达face(0)前一直调用自身
+	// face 函数在到达 face(0) 前一直调用自身
 	if n == 1 {
 		return 1
 	}

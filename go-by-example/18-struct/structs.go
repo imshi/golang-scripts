@@ -1,5 +1,6 @@
 // Go 的结构体类似于其他语言中的 class，可以在结构体中定义多个字段，为结构体实现方法，实例化等；
 // 表示一项记录及该记录的各项属性/成员，通常选择用大写字母开头的成员名称以便于JSON导出编码；
+// 结构体支持嵌套
 
 package main
 
@@ -36,4 +37,23 @@ func main() {
 	// 结构体是可变的。
 	sp.age = 51
 	fmt.Println(sp.age)
+
+	// 结构体嵌套
+	type base struct {
+		num int
+	}
+
+	// container 结构体嵌套 base 结构体
+	type container struct {
+		base
+		str string
+	}
+
+	co := container{
+		base: base{num: 1},
+		str:  "some thing",
+	}
+
+	fmt.Printf("co={num: %v, str:%v} \n", co.num, co.str)
+	fmt.Println("num can also get by:", co.base.num)
 }
