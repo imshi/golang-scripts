@@ -90,12 +90,12 @@ func const0711() {
 	// fmt.Println(&e)
 }
 
-////////////////
+// //////////////
 // switch条件语句 //
-////////////////
+// //////////////
 func switch0711() {
 	// 局部变量
-	var grade string = "B"
+	var grade string
 	var marks int = 90
 	switch marks {
 	case 90:
@@ -179,9 +179,9 @@ func stringCut() {
 	fmt.Println(strings.Replace(strings.Trim(fmt.Sprint(mapDemo), "[]"), " ", ",", -1))
 }
 
-///////////
+// /////////
 // 结构体指针 //
-///////////
+// /////////
 func point0812() {
 	type name int8
 	type first struct {
@@ -330,9 +330,9 @@ func interface0819() {
 	getArea(c1)
 }
 
-/////////////////////////////////
+// ///////////////////////////////
 // 使用空接口实现各种类型的对象存储和接收任意类型作为参数 //
-/////////////////////////////////
+// ///////////////////////////////
 type Dog struct {
 	age int
 }
@@ -365,9 +365,9 @@ func interface0819_2() {
 	info(100)
 }
 
-//////////////////////////////
+// ////////////////////////////
 // 使用内建fmt.Errorf函数返回错误详细信息 //
-//////////////////////////////
+// ////////////////////////////
 func circleArea(radius float64) (float64, error) {
 	if radius < 0 {
 		return 0, fmt.Errorf("圆面积计算失败，半径：%0.2f 小于0", radius)
@@ -385,9 +385,9 @@ func error0821() {
 	fmt.Printf("圆面积为：%0.2f", area)
 }
 
-//////////////////////////////////////////////
+// ////////////////////////////////////////////
 // 并发：使用sync.WaitGroup保证gorountine执行完毕后继续执行 //
-//////////////////////////////////////////////
+// ////////////////////////////////////////////
 func receiveMsg0821() {
 	msg := make(chan string)
 	// 创建一个新的sync.WaitGroup实例wg
@@ -421,9 +421,9 @@ func receiveMsg0821() {
 
 }
 
-//////////
+// ////////
 // 通道遍历 //
-//////////
+// ////////
 func producer(chnl chan int) {
 	for i := 0; i < 10; i++ {
 		chnl <- i
